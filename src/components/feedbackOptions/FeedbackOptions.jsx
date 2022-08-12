@@ -7,13 +7,17 @@ const FeedbackOptions = ({
 }) => {
   return (
     <div className={s.controls}>
-      <button type="button" className={s.button} onClick={setFeedbackGood}>
+      <button type="button" className={s.buttonGood} onClick={setFeedbackGood}>
         Good
       </button>
-      <button type="button" className={s.button} onClick={setFeedbackNeutral}>
+      <button
+        type="button"
+        className={s.buttonNeutral}
+        onClick={setFeedbackNeutral}
+      >
         Neutral
       </button>
-      <button type="button" className={s.button} onClick={setFeedbackBad}>
+      <button type="button" className={s.buttonBad} onClick={setFeedbackBad}>
         Bad
       </button>
     </div>

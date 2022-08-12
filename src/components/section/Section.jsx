@@ -17,7 +17,7 @@ const Section = ({
         setFeedbackBad={setFeedbackBad}
         setFeedbackNeutral={setFeedbackNeutral}
       />
-      <h2 className={s.statisticsTitle}>Statistics</h2>
+      <h2 className={s.statisticsTitle}>Statistics:</h2>
       <Statistics options={options} />
     </>
   );
