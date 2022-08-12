@@ -12,8 +12,9 @@ class App extends React.Component {
 
   countPositiveFeedbackPercentage = () => {
     this.setState(prevState => ({
-      valuePositivePercentage:
-        (prevState.valueGood / prevState.valueTotal) * 100,
+      valuePositivePercentage: Math.round(
+        (prevState.valueGood / prevState.valueTotal) * 100
+      ),
     }));
   };
 
