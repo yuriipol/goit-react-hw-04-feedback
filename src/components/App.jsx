@@ -3,9 +3,9 @@ import Section from './section/Section';
 
 class App extends React.Component {
   state = {
-    valueGood: 0,
-    valueBad: 0,
-    valueNeutral: 0,
+    good: 0,
+    bad: 0,
+    neutral: 0,
     valueTotal: 0,
     valuePositivePercentage: 0,
   };
@@ -13,36 +13,37 @@ class App extends React.Component {
   countPositiveFeedbackPercentage = () => {
     this.setState(prevState => ({
       valuePositivePercentage: Math.round(
-        (prevState.valueGood / prevState.valueTotal) * 100
+        (prevState.good / prevState.valueTotal) * 100
       ),
     }));
   };
 
   countTotalFeedback = () => {
     this.setState(prevState => ({
-      valueTotal:
-        prevState.valueGood + prevState.valueBad + prevState.valueNeutral,
+      valueTotal: prevState.good + prevState.bad + prevState.neutral,
     }));
   };
 
-  goodIncrement = () => {
+  increment = event => {
+    // console.log(event.target.name);
+
     this.setState(prevState => ({
-      valueGood: prevState.valueGood + 1,
+      [event.target.name]: prevState[event.target.name] + 1,
     }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
-  };
-  badIncrement = () => {
-    this.setState(prevState => ({
-      valueBad: prevState.valueBad + 1,
-    }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
-  };
-  neutralIncrement = () => {
-    this.setState(prevState => ({
-      valueNeutral: prevState.valueNeutral + 1,
-    }));
+
+    // if (event.target.name === 'good') {
+    //   this.setState(prevState => ({
+    //     valueGood: prevState.valueGood + 1,
+    //   }));
+    // } else if (event.target.name === 'bad') {
+    //   this.setState(prevState => ({
+    //     valueBad: prevState.valueBad + 1,
+    //   }));
+    // } else if (event.target.name === 'neutral') {
+    //   this.setState(prevState => ({
+    //     valueNeutral: prevState.valueNeutral + 1,
+    //   }));
+    // }
     this.countTotalFeedback();
     this.countPositiveFeedbackPercentage();
   };
@@ -52,9 +53,7 @@ class App extends React.Component {
       <div>
         <Section
           title="Plese lieve fedback"
-          setFeedbackGood={this.goodIncrement}
-          setFeedbackBad={this.badIncrement}
-          setFeedbackNeutral={this.neutralIncrement}
+          setFeedback={this.increment}
           options={this.state}
         />
       </div>

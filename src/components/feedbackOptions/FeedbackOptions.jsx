@@ -1,23 +1,30 @@
 import s from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({
-  setFeedbackGood,
-  setFeedbackBad,
-  setFeedbackNeutral,
-}) => {
+const FeedbackOptions = ({ setFeedback }) => {
   return (
     <div className={s.controls}>
-      <button type="button" className={s.buttonGood} onClick={setFeedbackGood}>
+      <button
+        type="button"
+        name="good"
+        className={s.buttonGood}
+        onClick={setFeedback}
+      >
         Good
       </button>
       <button
         type="button"
+        name="neutral"
         className={s.buttonNeutral}
-        onClick={setFeedbackNeutral}
+        onClick={setFeedback}
       >
         Neutral
       </button>
-      <button type="button" className={s.buttonBad} onClick={setFeedbackBad}>
+      <button
+        type="button"
+        name="bad"
+        className={s.buttonBad}
+        onClick={setFeedback}
+      >
         Bad
       </button>
     </div>
