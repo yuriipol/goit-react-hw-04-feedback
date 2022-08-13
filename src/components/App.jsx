@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './section/Section';
+import Section from './section';
 
 class App extends React.Component {
   state = {

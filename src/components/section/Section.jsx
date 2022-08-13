@@ -1,7 +1,7 @@
 import s from './Section.module.css';
-import FeedbackOptions from 'components/feedbackOptions/FeedbackOptions';
-import Statistics from 'components/statistics/Statistics';
-import Notification from 'components/notification/Notification';
+import FeedbackOptions from 'components/feedbackOptions';
+import Statistics from 'components/statistics';
+import Notification from 'components/notification';
 
 const Section = ({ title, options, setFeedback, setTotal, setPercentage }) => {
   return (
