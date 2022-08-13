@@ -8,6 +8,8 @@ class App extends React.Component {
     neutral: 0,
     valueTotal: 0,
     valuePositivePercentage: 0,
+    displayStatistics: 'none',
+    displayNotifications: 'flex',
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -26,7 +28,12 @@ class App extends React.Component {
 
   increment = event => {
     // console.log(event.target.name);
-
+    this.setState(() => ({
+      displayStatistics: 'flex',
+    }));
+    this.setState(() => ({
+      displayNotifications: 'none',
+    }));
     this.setState(prevState => ({
       [event.target.name]: prevState[event.target.name] + 1,
     }));
