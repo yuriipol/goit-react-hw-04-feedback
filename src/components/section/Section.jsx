@@ -9,8 +9,12 @@ const Section = ({ title, options, setFeedback }) => {
       <h1 className={s.title}>{title}</h1>
       <FeedbackOptions setFeedback={setFeedback} />
       <h2 className={s.statisticsTitle}>Statistics:</h2>
-      <Notification massege="There is no feedback" options={options} />
-      <Statistics options={options} />
+      <br />
+      {options.visible ? (
+        <Statistics options={options} />
+      ) : (
+        <Notification massege="There is no feedback" />
+      )}
     </>
   );
 };

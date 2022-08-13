@@ -8,8 +8,7 @@ class App extends React.Component {
     neutral: 0,
     valueTotal: 0,
     valuePositivePercentage: 0,
-    displayStatistics: 'none',
-    displayNotifications: 'flex',
+    visible: false,
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -25,15 +24,13 @@ class App extends React.Component {
       valueTotal: prevState.good + prevState.bad + prevState.neutral,
     }));
   };
+  show = () => {
+    this.setState({ visible: true });
+  };
 
   increment = event => {
     // console.log(event.target.name);
-    this.setState(() => ({
-      displayStatistics: 'flex',
-    }));
-    this.setState(() => ({
-      displayNotifications: 'none',
-    }));
+
     this.setState(prevState => ({
       [event.target.name]: prevState[event.target.name] + 1,
     }));
@@ -51,6 +48,7 @@ class App extends React.Component {
     //     valueNeutral: prevState.valueNeutral + 1,
     //   }));
     // }
+    this.show();
     this.countTotalFeedback();
     this.countPositiveFeedbackPercentage();
   };
