@@ -6,23 +6,26 @@ class App extends React.Component {
     good: 0,
     bad: 0,
     neutral: 0,
-    valueTotal: 0,
-    valuePositivePercentage: 0,
     visible: false,
   };
 
   countPositiveFeedbackPercentage = () => {
-    this.setState(prevState => ({
-      valuePositivePercentage: Math.round(
-        (prevState.good / prevState.valueTotal) * 100
-      ),
-    }));
+    const { good, bad, neutral } = this.state;
+    const PositivePercentage = Math.round(
+      (good / (good + bad + neutral)) * 100
+    );
+    return PositivePercentage;
+    // this.setState(prevState => ({
+    //   valuePositivePercentage: Math.round(
+    //     (prevState.good / prevState.valueTotal) * 100
+    //   ),
+    // }));
   };
 
   countTotalFeedback = () => {
-    this.setState(prevState => ({
-      valueTotal: prevState.good + prevState.bad + prevState.neutral,
-    }));
+    const { good, bad, neutral } = this.state;
+    const total = good + neutral + bad;
+    return total;
   };
   show = () => {
     this.setState({ visible: true });
@@ -30,11 +33,11 @@ class App extends React.Component {
 
   increment = event => {
     // console.log(event.target.name);
-
+    const { name } = event.target;
     this.setState(prevState => ({
-      [event.target.name]: prevState[event.target.name] + 1,
+      [name]: prevState[name] + 1,
     }));
-
+    this.show();
     // if (event.target.name === 'good') {
     //   this.setState(prevState => ({
     //     valueGood: prevState.valueGood + 1,
@@ -48,9 +51,6 @@ class App extends React.Component {
     //     valueNeutral: prevState.valueNeutral + 1,
     //   }));
     // }
-    this.show();
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
   };
 
   render() {
@@ -59,6 +59,8 @@ class App extends React.Component {
         <Section
           title="Plese lieve fedback"
           setFeedback={this.increment}
+          setTotal={this.countTotalFeedback}
+          setPercentage={this.countPositiveFeedbackPercentage}
           options={this.state}
         />
       </div>

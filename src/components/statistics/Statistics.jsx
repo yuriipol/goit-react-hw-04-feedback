@@ -1,16 +1,21 @@
 import s from './Statistics.module.css';
 
-const Statistics = ({ options }) => {
-  // console.log(options);
+const Statistics = ({
+  options: { good, neutral, bad },
+  setTotal,
+  setPercentage,
+}) => {
+  const percentage = setPercentage();
+  const total = setTotal();
 
   return (
     <div className={s.statistics}>
-      <span className={s.goodText}>Good: {options.good}</span>
-      <span className={s.neutralText}>Neutral: {options.neutral}</span>
-      <span className={s.badText}>Bad: {options.bad}</span>
-      <span className={s.totalText}>Total: {options.valueTotal}</span>
+      <span className={s.goodText}>Good: {good}</span>
+      <span className={s.neutralText}>Neutral: {neutral}</span>
+      <span className={s.badText}>Bad: {bad}</span>
+      <span className={s.totalText}>Total: {total}</span>
       <span className={s.postisvPercentageText}>
-        Posistive fedback: {options.valuePositivePercentage}%
+        Posistive fedback: {percentage}%
       </span>
     </div>
   );

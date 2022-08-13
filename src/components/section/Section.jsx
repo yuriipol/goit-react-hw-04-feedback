@@ -3,7 +3,7 @@ import FeedbackOptions from 'components/feedbackOptions/FeedbackOptions';
 import Statistics from 'components/statistics/Statistics';
 import Notification from 'components/notification/Notification';
 
-const Section = ({ title, options, setFeedback }) => {
+const Section = ({ title, options, setFeedback, setTotal, setPercentage }) => {
   return (
     <>
       <h1 className={s.title}>{title}</h1>
@@ -11,7 +11,11 @@ const Section = ({ title, options, setFeedback }) => {
       <h2 className={s.statisticsTitle}>Statistics:</h2>
       <br />
       {options.visible ? (
-        <Statistics options={options} />
+        <Statistics
+          options={options}
+          setTotal={setTotal}
+          setPercentage={setPercentage}
+        />
       ) : (
         <Notification massege="There is no feedback" />
       )}
