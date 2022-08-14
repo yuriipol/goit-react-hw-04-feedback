@@ -1,4 +1,5 @@
 import s from './Section.module.css';
+import PropTypes from 'prop-types';
 import FeedbackOptions from 'components/feedbackOptions';
 import Statistics from 'components/statistics';
 import Notification from 'components/notification';
@@ -24,3 +25,15 @@ const Section = ({ title, options, setFeedback, setTotal, setPercentage }) => {
 };
 
 export default Section;
+Section.propTypes = {
+  setTotal: PropTypes.func.isRequired,
+  setPercentage: PropTypes.func.isRequired,
+  setFeedback: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    visible: PropTypes.bool.isRequired,
+  }),
+};

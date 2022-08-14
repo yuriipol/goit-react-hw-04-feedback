@@ -1,4 +1,5 @@
 import s from './Statistics.module.css';
+import PropTypes from 'prop-types';
 
 const Statistics = ({
   options: { good, neutral, bad },
@@ -22,3 +23,14 @@ const Statistics = ({
 };
 
 export default Statistics;
+
+Statistics.propTypes = {
+  setTotal: PropTypes.func.isRequired,
+  setPercentage: PropTypes.func.isRequired,
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    visible: PropTypes.bool.isRequired,
+  }),
+};
