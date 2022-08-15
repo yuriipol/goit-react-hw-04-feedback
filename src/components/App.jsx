@@ -1,5 +1,8 @@
 import React from 'react';
 import Section from './section';
+import Statistics from './statistics/Statistics';
+import Notification from './notification/Notification';
+import FeedbackOptions from './feedbackOptions/FeedbackOptions';
 
 class App extends React.Component {
   state = {
@@ -56,19 +59,26 @@ class App extends React.Component {
 
   render() {
     const { good, bad, neutral } = this.state;
+    const { visible } = this;
     return (
       <div>
-        <Section
-          title="Plese lieve fedback"
-          setFeedback={this.increment}
-          setTotal={this.countTotalFeedback}
-          setPercentage={this.countPositiveFeedbackPercentage}
-          good={good}
-          bad={bad}
-          neutral={neutral}
-          options={['good', 'neutral', 'bad']}
-          visible={this.visible}
-        />
+        <Section title="Plese lieve fedback">
+          <FeedbackOptions
+            setFeedback={this.increment}
+            options={['good', 'neutral', 'bad']}
+          />
+          {visible ? (
+            <Statistics
+              setTotal={this.countTotalFeedback}
+              setPercentage={this.countPositiveFeedbackPercentage}
+              good={good}
+              bad={bad}
+              neutral={neutral}
+            />
+          ) : (
+            <Notification massege="There is no feedback" />
+          )}
+        </Section>
       </div>
     );
   }

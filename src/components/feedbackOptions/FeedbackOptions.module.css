@@ -1,6 +1,6 @@
-.button,
-.button,
-.button {
+.good,
+.bad,
+.neutral {
   appearance: none;
   border: 0;
   border-radius: 5px;
@@ -11,16 +11,17 @@
   cursor: pointer;
 
   margin-right: 5px;
+  margin-bottom: 20px;
 }
-.button:hover,
-.button:focus {
+.good:hover,
+.good:focus {
   background-color: green;
 }
-/* .buttonNeutral:hover,
-.buttonNeutral:focus {
+.neutral:hover,
+.neutral:focus {
   background-color: blue;
 }
-.buttonBad:hover,
-.buttonBad:focus {
+.bad:hover,
+.bad:focus {
   background-color: red;
-} */
+}
