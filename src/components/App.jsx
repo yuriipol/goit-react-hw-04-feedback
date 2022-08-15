@@ -6,8 +6,9 @@ class App extends React.Component {
     good: 0,
     bad: 0,
     neutral: 0,
-    visible: false,
   };
+
+  visible = false;
 
   countPositiveFeedbackPercentage = () => {
     const { good, bad, neutral } = this.state;
@@ -28,7 +29,7 @@ class App extends React.Component {
     return total;
   };
   show = () => {
-    this.setState({ visible: true });
+    this.visible = true;
   };
 
   increment = event => {
@@ -62,6 +63,7 @@ class App extends React.Component {
           setTotal={this.countTotalFeedback}
           setPercentage={this.countPositiveFeedbackPercentage}
           options={this.state}
+          visible={this.visible}
         />
       </div>
     );
