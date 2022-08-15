@@ -31,6 +31,5 @@ Statistics.propTypes = {
     good: PropTypes.number.isRequired,
     bad: PropTypes.number.isRequired,
     neutral: PropTypes.number.isRequired,
-    visible: PropTypes.bool.isRequired,
   }),
 };
