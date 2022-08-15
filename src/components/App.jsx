@@ -62,7 +62,7 @@ class App extends React.Component {
     const { visible } = this;
     return (
       <div>
-        <Section title="Plese lieve fedback">
+        <Section title="Plese lieve feedback">
           <FeedbackOptions
             setFeedback={this.increment}
             options={['good', 'neutral', 'bad']}
