@@ -1,11 +1,7 @@
 import s from './Statistics.module.css';
 import PropTypes from 'prop-types';
 
-const Statistics = ({
-  options: { good, neutral, bad },
-  setTotal,
-  setPercentage,
-}) => {
+const Statistics = ({ good, neutral, bad, setTotal, setPercentage }) => {
   const percentage = setPercentage();
   const total = setTotal();
 
@@ -27,9 +23,7 @@ export default Statistics;
 Statistics.propTypes = {
   setTotal: PropTypes.func.isRequired,
   setPercentage: PropTypes.func.isRequired,
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-  }),
+  good: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
 };

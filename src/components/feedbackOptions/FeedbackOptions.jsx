@@ -1,18 +1,23 @@
 import s from './FeedbackOptions.module.css';
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
-const FeedbackOptions = ({ setFeedback }) => {
+const FeedbackOptions = ({ setFeedback, options }) => {
   return (
     <div className={s.controls}>
-      <button
-        type="button"
-        name="good"
-        className={s.buttonGood}
-        onClick={setFeedback}
-      >
-        Good
-      </button>
-      <button
+      {options.map(item => (
+        <button
+          key={nanoid()}
+          type="button"
+          name={item}
+          className={s.button}
+          onClick={setFeedback}
+        >
+          {item}
+        </button>
+      ))}
+
+      {/* <button
         type="button"
         name="neutral"
         className={s.buttonNeutral}
@@ -27,7 +32,7 @@ const FeedbackOptions = ({ setFeedback }) => {
         onClick={setFeedback}
       >
         Bad
-      </button>
+      </button> */}
     </div>
   );
 };

@@ -55,6 +55,7 @@ class App extends React.Component {
   };
 
   render() {
+    const { good, bad, neutral } = this.state;
     return (
       <div>
         <Section
@@ -62,7 +63,10 @@ class App extends React.Component {
           setFeedback={this.increment}
           setTotal={this.countTotalFeedback}
           setPercentage={this.countPositiveFeedbackPercentage}
-          options={this.state}
+          good={good}
+          bad={bad}
+          neutral={neutral}
+          options={['good', 'neutral', 'bad']}
           visible={this.visible}
         />
       </div>

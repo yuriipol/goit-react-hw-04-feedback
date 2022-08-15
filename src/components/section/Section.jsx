@@ -10,17 +10,22 @@ const Section = ({
   setFeedback,
   setTotal,
   setPercentage,
+  good,
+  neutral,
+  bad,
   visible,
 }) => {
   return (
     <>
       <h1 className={s.title}>{title}</h1>
-      <FeedbackOptions setFeedback={setFeedback} />
+      <FeedbackOptions setFeedback={setFeedback} options={options} />
       <h2 className={s.statisticsTitle}>Statistics:</h2>
       <br />
       {visible ? (
         <Statistics
-          options={options}
+          good={good}
+          bad={bad}
+          neutral={neutral}
           setTotal={setTotal}
           setPercentage={setPercentage}
         />
@@ -37,9 +42,8 @@ Section.propTypes = {
   setPercentage: PropTypes.func.isRequired,
   setFeedback: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-  }),
+
+  good: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
 };
