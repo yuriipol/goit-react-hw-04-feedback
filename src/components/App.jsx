@@ -11,8 +11,6 @@ class App extends React.Component {
     neutral: 0,
   };
 
-  visible = false;
-
   countPositiveFeedbackPercentage = () => {
     const { good, bad, neutral } = this.state;
     const PositivePercentage = Math.round(
@@ -41,7 +39,6 @@ class App extends React.Component {
     this.setState(prevState => ({
       [name]: prevState[name] + 1,
     }));
-    this.show();
     // if (event.target.name === 'good') {
     //   this.setState(prevState => ({
     //     valueGood: prevState.valueGood + 1,
@@ -59,12 +56,13 @@ class App extends React.Component {
 
   render() {
     const { good, bad, neutral } = this.state;
-    const { visible } = this;
+    const total = good + bad + neutral;
     return (
       <div>
         <Section title="Plese lieve feedback">
           <FeedbackOptions setFeedback={this.increment} options={this.state} />
-          {visible ? (
+
+          {total > 0 ? (
             <Statistics
               setTotal={this.countTotalFeedback}
               setPercentage={this.countPositiveFeedbackPercentage}
