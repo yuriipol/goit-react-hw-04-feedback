@@ -63,10 +63,7 @@ class App extends React.Component {
     return (
       <div>
         <Section title="Plese lieve feedback">
-          <FeedbackOptions
-            setFeedback={this.increment}
-            options={['good', 'neutral', 'bad']}
-          />
+          <FeedbackOptions setFeedback={this.increment} options={this.state} />
           {visible ? (
             <Statistics
               setTotal={this.countTotalFeedback}

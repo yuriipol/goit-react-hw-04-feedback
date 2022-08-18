@@ -1,5 +1,5 @@
 import s from './FeedbackOptions.module.css';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 const classNames = {
@@ -9,7 +9,8 @@ const classNames = {
 };
 
 const FeedbackOptions = ({ setFeedback, options }) => {
-  const buttons = options.map(item => (
+  const arrayButtons = Object.keys(options);
+  const buttons = arrayButtons.map(item => (
     <button
       key={nanoid()}
       type="button"
@@ -48,5 +49,9 @@ export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
   setFeedback: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(string.isRequired),
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+  }),
 };
