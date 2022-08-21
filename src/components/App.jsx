@@ -59,7 +59,7 @@ class App extends React.Component {
     const total = good + bad + neutral;
     return (
       <div>
-        <Section title="Plese lieve feedback">
+        <Section title="Please lieve feedback">
           <FeedbackOptions setFeedback={this.increment} options={this.state} />
 
           {total > 0 ? (
