@@ -8,8 +8,13 @@ const classNames = {
   bad: s.bad,
 };
 
-const FeedbackOptions = ({ setFeedback, options }) => {
-  const arrayButtons = Object.keys(options);
+const FeedbackOptions = ({ setFeedback, good, bad, neutral }) => {
+  const object = {
+    good: good,
+    neutral: neutral,
+    bad: bad,
+  };
+  const arrayButtons = Object.keys(object);
   const buttons = arrayButtons.map(item => (
     <button
       key={nanoid()}
@@ -21,37 +26,14 @@ const FeedbackOptions = ({ setFeedback, options }) => {
       {item}
     </button>
   ));
-  return (
-    <div className={s.controls}>
-      {buttons}
-
-      {/* <button
-        type="button"
-        name="neutral"
-        className={s.buttonNeutral}
-        onClick={setFeedback}
-      >
-        Neutral
-      </button>
-      <button
-        type="button"
-        name="bad"
-        className={s.buttonBad}
-        onClick={setFeedback}
-      >
-        Bad
-      </button> */}
-    </div>
-  );
+  return <div className={s.controls}>{buttons}</div>;
 };
 
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
   setFeedback: PropTypes.func.isRequired,
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-  }),
+  good: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
 };

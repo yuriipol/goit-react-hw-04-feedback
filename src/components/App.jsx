@@ -1,81 +1,72 @@
-import React from 'react';
+import { useState } from 'react';
 import Section from './section';
 import Statistics from './statistics/Statistics';
 import Notification from './notification/Notification';
 import FeedbackOptions from './feedbackOptions/FeedbackOptions';
 
-class App extends React.Component {
-  state = {
-    good: 0,
-    bad: 0,
-    neutral: 0,
-  };
+function App() {
+  const [good, setGood] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [neutral, setNeutral] = useState(0);
 
-  countPositiveFeedbackPercentage = () => {
-    const { good, bad, neutral } = this.state;
+  const countPositiveFeedbackPercentage = () => {
     const PositivePercentage = Math.round(
       (good / (good + bad + neutral)) * 100
     );
     return PositivePercentage;
-    // this.setState(prevState => ({
-    //   valuePositivePercentage: Math.round(
-    //     (prevState.good / prevState.valueTotal) * 100
-    //   ),
-    // }));
   };
 
-  countTotalFeedback = () => {
-    const { good, bad, neutral } = this.state;
+  const countTotalFeedback = () => {
     const total = good + neutral + bad;
     return total;
   };
-  show = () => {
-    this.visible = true;
-  };
 
-  increment = event => {
-    // console.log(event.target.name);
+  const increment = event => {
     const { name } = event.target;
-    this.setState(prevState => ({
-      [name]: prevState[name] + 1,
-    }));
-    // if (event.target.name === 'good') {
-    //   this.setState(prevState => ({
-    //     valueGood: prevState.valueGood + 1,
-    //   }));
-    // } else if (event.target.name === 'bad') {
-    //   this.setState(prevState => ({
-    //     valueBad: prevState.valueBad + 1,
-    //   }));
-    // } else if (event.target.name === 'neutral') {
-    //   this.setState(prevState => ({
-    //     valueNeutral: prevState.valueNeutral + 1,
-    //   }));
-    // }
+    // console.log(event.target);
+    // this.setState(prevState => ({
+    //   [name]: prevState[name] + 1,
+    // }));
+    switch (name) {
+      case 'good':
+        setGood(good + 1);
+        break;
+      case 'bad':
+        setBad(bad + 1);
+        break;
+      case 'neutral':
+        setNeutral(neutral + 1);
+        break;
+      default:
+        return;
+    }
   };
 
-  render() {
-    const { good, bad, neutral } = this.state;
-    const total = good + bad + neutral;
-    return (
-      <div>
-        <Section title="Please lieve feedback">
-          <FeedbackOptions setFeedback={this.increment} options={this.state} />
+  const total = good + bad + neutral;
+  return (
+    <div>
+      <Section title="Please lieve feedback">
+        <FeedbackOptions
+          setFeedback={increment}
+          good={good}
+          bad={bad}
+          neutral={neutral}
+        />
 
-          {total > 0 ? (
-            <Statistics
-              setTotal={this.countTotalFeedback}
-              setPercentage={this.countPositiveFeedbackPercentage}
-              good={good}
-              bad={bad}
-              neutral={neutral}
-            />
-          ) : (
-            <Notification massege="There is no feedback" />
-          )}
-        </Section>
-      </div>
-    );
-  }
+        {total > 0 ? (
+          <Statistics
+            setTotal={countTotalFeedback}
+            setPercentage={countPositiveFeedbackPercentage}
+            good={good}
+            bad={bad}
+            neutral={neutral}
+          />
+        ) : (
+          <Notification massege="There is no feedback" />
+        )}
+      </Section>
+    </div>
+  );
 }
+
 export default App;
